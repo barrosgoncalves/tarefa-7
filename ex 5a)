@@ -1,0 +1,20 @@
+def escrevedados():
+    caracteristicas = []
+    
+    with open("sistema_solar.txt", "r") as dados:
+        for line in dados.readlines():
+            caracteristicas.append(line)
+    
+    caracteristicas = [elem.replace('\n', '') for elem in caracteristicas]
+    
+    for i in range(len(caracteristicas)):
+        caracteristicas[i] = caracteristicas[i].split(" ")
+
+    distmedia = {}
+    massa = {}
+    raio = {}
+    
+    for i in range(len(caracteristicas)):
+        distmedia[caracteristicas[i][0]] = int([caracteristicas[i][1]])
+        massa[caracteristicas[i][0]] = int([caracteristicas[i][2]])
+        raio[caracteristicas[i][0]] = int([caracteristicas[i][3]])
