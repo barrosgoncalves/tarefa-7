@@ -1,0 +1,34 @@
+def dizgecalculap():
+    valaceleracoes = []
+    
+    with open("valores_g.txt", "r") as valoresg:
+        for line in valoresg.readlines():
+            valaceleracoes.append(line)
+    
+    valaceleracoes = [elem.replace('\t', ' ') for elem in valaceleracoes]
+    valaceleracoes = [elem.replace('\n', "") for elem in valaceleracoes]
+    
+    for i in range(len(valaceleracoes)):
+        valaceleracoes[i] = valaceleracoes[i].split(" ")
+        del valaceleracoes[i][-1]
+    
+    aceleracoes = {}
+
+    for i in range(len(valaceleracoes)):
+        if len(valaceleracoes[i]) == 4:
+            aceleracoes[valaceleracoes[i][0] + " " + valaceleracoes[i][1] + " " + valaceleracoes[i][2]] = str([valaceleracoes[i][3]])
+        elif len(valaceleracoes[i]) == 3:
+            aceleracoes[valaceleracoes[i][0] + " " + valaceleracoes[i][1]] = str([valaceleracoes[i][2]])
+        else:
+            aceleracoes[valaceleracoes[i][0]] = str([valaceleracoes[i][1]])
+
+    s = aceleracoes.values()
+    float([x for x in s][1])
+        
+    cidade = str(input("Indique o nome da cidade cuja aceleração gravítica pretende utilizar: "))
+    massa = float(input("Indique a massa do objeto cuja força gravítica pretende calcular: "))
+
+    fg = aceleracoes[cidade] * massa
+    return fg
+
+dizgecalculap()
